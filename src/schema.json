@@ -1,32 +1,103 @@
 {
-  "type": "object",
-  "properties": {
-    "name": {
+  "definitions": {
+    "saucenaoapikey": {
       "type": "string",
-      "minLength": 1
+      "title": "Sauce Nao API Key"
     },
-    "description": {
-      "title": "Long Description",
-      "type": "string"
-    },
-    "done": {
-      "type": "boolean"
-    },
-    "due_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "rating": {
+    "chatid": {
       "type": "integer",
-      "maximum": 5
+      "title": "Chat ID"
     },
-    "recurrence": {
-      "type": "string",
-      "enum": ["Never", "Daily", "Weekly", "Monthly"]
+    "percents": {
+      "type": "number",
+      "title": "Percents of 100 (like 75%)",
+      "minimum": 0,
+      "maximum": 100
     },
-    "recurrence_interval": {
-      "type": "integer"
+    "milliseconds": {
+      "type": "integer",
+      "title": "Milliseconds",
+      "minimum": 0
+    },
+    "proxysettings": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "executorconfig": {
+      "type": "object",
+      "properties": {
+        "botToken": {
+          "type": "string",
+          "title": "Telegram Bot Token"
+        },
+        "clientConfig": {
+          "type": "object",
+          "properties": {
+            "connectTimeout": {
+              "type": "integer",
+              "title": "Connect timeout milliseconds",
+              "minimum": 0,
+              "default": 1000
+            },
+            "writeTimeout": {
+              "type": "integer",
+              "title": "Write timeout milliseconds",
+              "minimum": 0,
+              "default": 1000
+            },
+            "readTimeout": {
+              "type": "integer",
+              "title": "Read timeout milliseconds",
+              "minimum": 0,
+              "default": 1000
+            }
+          }
+        }
+      },
+      "required": [
+        "botToken"
+      ]
     }
   },
-  "required": ["name", "due_date"]
+  "type": "object",
+  "properties": {
+    "sauceNaoKey": {
+      "$ref": "#/definitions/saucenaoapikey"
+    },
+    "sauceNaoKeys": {
+      "type": "array",
+      "title": "Sauce Nao API Keys",
+      "items": {
+        "$ref": "#/definitions/saucenaoapikey"
+      }
+    },
+    "admin": {
+      "$ref": "#/definitions/chatid"
+    },
+    "minimalSimilarity": {
+      "$ref": "#/definitions/percents"
+    },
+    "workChats": {
+      "type": "array",
+      "title": "Working chats. If not passed - any chat will be able to request sauces",
+      "items": {
+        "$ref": "#/definitions/chatid"
+      }
+    },
+    "executorConfig": {
+      "$ref": "#/definitions/executorconfig"
+    }
+  },
+  "required": [
+    "sauceNaoKey",
+    "executorConfig"
+  ]
 }

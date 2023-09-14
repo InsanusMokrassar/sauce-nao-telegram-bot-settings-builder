@@ -3,52 +3,35 @@
   "elements": [
     {
       "type": "Control",
-      "label": "Completed",
-      "scope": "#/properties/done"
+      "label": "Main Sauce Nao API Key",
+      "scope": "#/properties/sauceNaoKey"
     },
     {
       "type": "Control",
-      "scope": "#/properties/name"
-    },
-    {
-      "type": "HorizontalLayout",
-      "elements": [
-        {
-          "type": "Control",
-          "scope": "#/properties/due_date"
-        },
-        {
-          "type": "Control",
-          "scope": "#/properties/rating"
-        }
-      ]
-    },
-    {
-      "type": "HorizontalLayout",
-      "elements": [
-        {
-          "type": "Control",
-          "scope": "#/properties/recurrence"
-        },
-        {
-          "type": "Control",
-          "scope": "#/properties/recurrence_interval",
-          "rule": {
-            "effect": "HIDE",
-            "condition": {
-              "type": "LEAF",
-              "scope": "#/properties/recurrence",
-              "expectedValue": "Never"
-            }
-          }
-        }
-      ]
+      "label": "Additional Sauce Nao API Keys",
+      "scope": "#/properties/sauceNaoKeys"
     },
     {
       "type": "Control",
-      "scope": "#/properties/description",
+      "label": "Admin telegram identifier",
+      "scope": "#/properties/admin"
+    },
+    {
+      "type": "Control",
+      "label": "Default minimal similarity in requests",
+      "scope": "#/properties/minimalSimilarity"
+    },
+    {
+      "type": "Control",
+      "label": "Working chats. If not passed - any chat will be able to request sauces",
+      "scope": "#/properties/workChats"
+    },
+    {
+      "type": "Control",
+      "label": "Executor config",
+      "scope": "#/properties/executorConfig",
       "options": {
-        "multi": true
+        
       }
     }
   ]
